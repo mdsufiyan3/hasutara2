@@ -8,9 +8,6 @@ yarn-error.log
 .env
 .env.local
 .env.*.local
-.env
-.env.*
-!.env.example
 
 # Configuration files with sensitive data
 smtp-config.js
@@ -22,14 +19,6 @@ config.js
 email-config.js
 **/config.js
 **/email-config.js
-**/config/*.json
-**/config/*.js
-!**/config/*.example.js
-
-# Secrets
-**/secrets/*
-api-keys.js
-smtp-keys.js
 
 # IDE and editor files
 .idea/
