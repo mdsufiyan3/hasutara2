@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Orders - HASUTA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/dashbord test/css3/customer-orders.css">
+    <link rel="stylesheet" href="/dashbord test/css3/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="image/download.png" alt="HASUTA" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-link" data-page="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="users-data.html" class="nav-link" data-page="users" onclick="loadUsersContent(event)">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="#" class="nav-link active" data-page="orders" onclick="loadOrdersContent(event)">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="all-available-products.html" class="nav-link">
+                    <i class="fas fa-box"></i>
+                    <span>Products</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Customer Orders</h1>
+                    <p class="date">Today: <span id="currentDate"></span></p>
+                </div>
+                <div class="header-right">
+                    <div class="admin-profile">
+                        <img src="image/admin.jpg" alt="Admin" class="admin-image">
+                        <span class="admin-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Month Selector Toggle -->
+            <div id="monthSelectorToggle" class="month-selector-toggle">
+                <div class="checkbox"></div>
+                <span>Show Month/Year Filter</span>
+            </div>
+
+            <!-- Month Selector -->
+            <div id="monthSelector" class="month-selector hidden">
+                <div class="month-dropdown">
+                    <div class="select-wrapper">
+                        <select id="monthSelect">
+                            <option value="all">All Months</option>
+                            <option value="0">January</option>
+                            <option value="1">February</option>
+                            <option value="2">March</option>
+                            <option value="3">April</option>
+                            <option value="4">May</option>
+                            <option value="5">June</option>
+                            <option value="6">July</option>
+                            <option value="7">August</option>
+                            <option value="8">September</option>
+                            <option value="9">October</option>
+                            <option value="10">November</option>
+                            <option value="11">December</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="year-dropdown">
+                    <div class="select-wrapper">
+                        <select id="yearSelect">
+                            <!-- Years will be added dynamically via JavaScript -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Stats Cards -->
+            <div class="order-stats">
+                <div class="stat-card total">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Orders</h3>
+                        <span id="totalCount">0</span>
+                    </div>
+                </div>
+                <a href="/dashbord test/order-chart.html" class="stat-card analytics">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Analytics</h3>
+                        <span id="analyticsCount">0</span>
+                    </div>
+                </a>
+                <a href="/dashbord test/returns.html" class="stat-card returns">
+                    <div class="stat-icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Returns</h3>
+                        <span id="returnsCount">0</span>
+                    </div>
+                </a>
+                <div class="stat-card pending">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Pending Orders</h3>
+                        <span id="pendingCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card processing">
+                    <div class="stat-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Processing</h3>
+                        <span id="processingCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card shipped">
+                    <div class="stat-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Shipped</h3>
+                        <span id="shippedCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card delivered">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Delivered</h3>
+                        <span id="deliveredCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card cancelled">
+                    <div class="stat-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Cancelled</h3>
+                        <span id="cancelledCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card returned">
+                    <div class="stat-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Returned</h3>
+                        <span id="returnedCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Move the search container here -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search by customer name or order ID">
+            </div>
+
+            <!-- Date Filter -->
+            <div class="date-filter">
+                <label for="orderDate">Select Date:</label>
+                <input type="date" id="orderDate" name="orderDate">
+            </div>
+
+            <!-- Orders Summary -->
+            <div class="orders-summary">
+                <div class="total-orders">
+                    <i class="fas fa-shopping-bag"></i>
+                    <div class="summary-details">
+                        <h3>Total Orders</h3>
+                        <span id="totalOrderCount">0</span>
+                    </div>
+                </div>
+                <div class="order-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="currentDate"></span>
+                </div>
+            </div>
+
+            <!-- Status Filters -->
+            <div class="status-filters">
+                <button class="status-btn active" data-status="all">
+                    <i class="fas fa-list"></i>
+                    All Orders
+                </button>
+                <button class="status-btn" data-status="pending">
+                    <i class="fas fa-clock"></i>
+                    Pending
+                </button>
+                <button class="status-btn" data-status="processing">
+                    <i class="fas fa-cog"></i>
+                    Processing
+                </button>
+                <button class="status-btn" data-status="shipped">
+                    <i class="fas fa-truck"></i>
+                    Shipped
+                </button>
+                <button class="status-btn" data-status="delivered">
+                    <i class="fas fa-check-circle"></i>
+                    Delivered
+                </button>
+                <button class="status-btn" data-status="cancelled">
+                    <i class="fas fa-times-circle"></i>
+                    Cancelled
+                </button>
+                <button class="status-btn" data-status="returned">
+                    <i class="fas fa-undo"></i>
+                    Returned
+                </button>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="orders-table-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <!-- Orders will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Status Update Modal -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content">
+            <h2>Update Order Status</h2>
+            <select id="statusUpdate" class="status-select">
+                <option value="pending">Pending</option>
+                <option value="processing">Processing</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+            </select>
+            <div class="modal-buttons">
+                <button id="updateStatusBtn" class="update-btn">Update</button>
+                <button id="closeModalBtn" class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this modal template to your HTML -->
+    <div id="orderDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Order Details</h2>
+                <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+            </div>
+            
+            <div class="order-info">
+                <div class="order-header">
+                    <h3 id="modalOrderId"></h3>
+                    <span id="modalOrderDate"></span>
+                </div>
+
+                <div class="customer-info">
+                    <h4>CUSTOMER INFORMATION</h4>
+                    <p><i class="fas fa-user"></i> <span id="modalCustomerName"></span></p>
+                    <p><i class="fas fa-envelope"></i> <span id="modalCustomerEmail"></span></p>
+                    <p><i class="fas fa-phone"></i> <span id="modalCustomerPhone"></span></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <span id="modalCustomerAddress"></span></p>
+                    <p><i class="fas fa-map-pin"></i> <span id="modalCustomerPincode"></span></p>
+                </div>
+
+                <div class="order-items">
+                    <h4>ORDER ITEMS</h4>
+                    <div id="orderItemsList" class="items-list"></div>
+                </div>
+
+                <div class="order-summary">
+                    <div class="payment-info">
+                        <p>Payment Method: <span id="modalPaymentMethod"></span></p>
+                        <p>Status: <span id="modalOrderStatus" class="status-badge"></span></p>
+                    </div>
+                    <div class="price-breakdown">
+                        <p>Subtotal: <span id="modalOrderSubtotal"></span></p>
+                        <p>Shipping: <span id="modalOrderShipping"></span></p>
+                        <p class="total">Total Amount: <span id="modalOrderTotal"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this container for the loading spinner -->
+    <div id="loadingSpinnerContainer"></div>
+
+    <script type="module" src="/js3/firebase-config.js"></script>
+    <script type="module" src="/dashbord test/js3/customer-orders.js"></script>
+</body>
+</html>

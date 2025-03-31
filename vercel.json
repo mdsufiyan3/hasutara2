@@ -1,0 +1,20 @@
+{
+  "cleanUrls": true,
+  "version": 2,
+  "public": true,
+  "headers": [
+    {
+      "source": "/site.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
+}

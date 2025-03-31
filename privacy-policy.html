@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - HASSUTA</title>
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/image/favicon-96x96.png" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <style>
+        /* Inline styles to maintain design consistency */
+        :root {
+            --primary-color: #6B7FD7;
+            --secondary-color: #F5E6BE;
+            --accent-color: #4A5CBC;
+            --background-color: #0a0a0a;
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .privacy-policy-container {
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 2rem;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .privacy-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, var(--primary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .privacy-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        .policy-section {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(107, 127, 215, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .policy-section:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            background: rgba(107, 127, 215, 0.05);
+        }
+
+        .policy-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .policy-section p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .policy-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section li {
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(107, 127, 215, 0.1), rgba(0, 0, 0, 0.2));
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-policy-container {
+                padding: 1rem;
+                margin-top: 60px;
+            }
+
+            .privacy-header h1 {
+                font-size: 2rem;
+            }
+
+            .policy-section {
+                padding: 1.5rem;
+            }
+
+            .policy-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .home-link {
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            padding: 8px;
+        }
+
+        .home-link:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Component Container -->
+    <div id="header-container"></div>
+
+    <div class="privacy-policy-container">
+        <div class="privacy-header">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: March 10, 2025</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>1. Introduction</h2>
+            <p>Welcome to HASUTARA's Privacy Policy. This policy explains how we collect, use, protect, and handle your personal information when you use our website and services.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>2. Information We Collect</h2>
+            <p>We collect information that you provide directly to us, including:</p>
+            <ul>
+                <li>Name and contact information</li>
+                <li>Shipping and billing addresses</li>
+                <li>Payment information</li>
+                <li>Purchase history</li>
+                <li>Account preferences</li>
+                <li>Communication preferences</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>3. How We Use Your Information</h2>
+            <p>We use the collected information for various purposes:</p>
+            <ul>
+                <li>Processing your orders and payments</li>
+                <li>Providing customer support</li>
+                <li>Sending order updates and shipping notifications</li>
+                <li>Personalizing your shopping experience</li>
+                <li>Improving our products and services</li>
+                <li>Marketing communications (with your consent)</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>4. Order Cancellations & Communication</h2>
+            <p>When an order needs to be cancelled due to stock unavailability:</p>
+            <ul>
+                <li>We will notify you via email and/or phone</li>
+                <li>Your payment information will be securely processed for refund</li>
+                <li>Order status updates will be shared through your registered email</li>
+                <li>We may collect and process additional information for refund purposes</li>
+                <li>Cancellation records are maintained for customer service improvement</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>4. Data Security</h2>
+            <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>5. Cookies and Tracking</h2>
+            <p>We use cookies and similar tracking technologies to improve your browsing experience, analyze site traffic, and understand where our visitors come from.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>6. Third-Party Services</h2>
+            <p>We may use third-party services that collect, monitor, and analyze information to help improve our Service. These third-party service providers have their own privacy policies addressing how they use such information.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>7. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal information</li>
+                <li>Correct inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Object to data processing</li>
+                <li>Data portability</li>
+                <li>Withdraw consent</li>
+            </ul>
+        </div>
+
+        <div class="contact-info">
+            <h3>Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+            <p>Email: <a href="mailto:privacy@HASUTARA.com">privacy@hasuta.com</a></p>
+            <p>Phone: +1 (555) 123-4567</p>
+        </div>
+
+        <div class="last-updated">
+            <p>This privacy policy was last updated on March 10, 2025</p>
+        </div>
+    </div>
+
+    <script type="module" src="js/include-header.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Reviews - HASUTARA</title>
+    
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/image/favicon-96x96.png" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/reviews-page.css">
+</head>
+<body>
+    <!-- Update the loading overlay structure -->
+    <div class="loading-overlay">
+        <div class="loading-spinner">
+            <img src="image/apple-touch-icon.png" alt="HASUTARA" class="loading-logo">
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Product Reviews</h1>
+            <div class="nav-icons">
+                <a href="/cart.html" class="nav-icon">
+                    <img src="image/WhatsApp_Image_2025-01-10_at_20.47.46_ff41ac29-removebg-preview.png" alt="Cart" class="sticker-icon cart-sticker">
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="reviews-page">
+        <!-- Reviews Summary -->
+        <section class="reviews-summary">
+            <div class="summary-header">
+                <div class="rating-box">
+                    <div class="rating-number">4.5</div>
+                    <div class="rating-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="total-reviews">Based on 127 reviews</div>
+                </div>
+                <div class="rating-bars">
+                    <div class="rating-bar">
+                        <span class="rating-label">5★</span>
+                        <div class="rating-progress">
+                            <div class="rating-progress-fill" style="width: 70%"></div>
+                        </div>
+                        <span class="rating-count">89</span>
+                    </div>
+                    <!-- Repeat for other ratings -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="reviews-filters">
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="all">All Reviews</button>
+                <button class="filter-btn" data-filter="5">5 Star</button>
+                <button class="filter-btn" data-filter="4">4 Star</button>
+                <button class="filter-btn" data-filter="3">3 Star</button>
+                <button class="filter-btn" data-filter="with-photos">With Photos</button>
+            </div>
+            <div class="sort-options">
+                <select id="sortReviews">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="highest">Highest Rated</option>
+                    <option value="lowest">Lowest Rated</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Reviews List -->
+        <section class="reviews-list">
+            <!-- Reviews will be dynamically loaded here -->
+        </section>
+
+        <!-- Load More -->
+        <button class="load-more-btn">
+            <span>Load More Reviews</span>
+            <i class="fas fa-spinner"></i>
+        </button>
+    </main>
+
+    <script type="module" src="/js/reviews-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore HASUTA's exclusive streetwear collection featuring hoodies and urban fashion">
+    <meta name="keywords" content="streetwear, hoodies, urban fashion, HASUTA">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/product/mans product/css/product 2view.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <script type="module" src="/js/cart-handler.js"></script>
+     
+      </head> 
+    <link 
+<body>
+    <!-- Add this right after the opening <body> tag -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="image/apple-touch-icon.png" alt="HASUTA" class="logo-image">
+                </a>
+            </div>
+            <div class="nav-icons">
+                <a href="/profile.html" class="nav-icon">
+                    <img src="image/WhatsApp_Image_2025-01-10_at_21.22.20_5031295e-removebg-preview.png" alt="Profile" class="sticker-icon">
+                </a>
+                <a href="/cart.html" class="nav-icon">
+                    <img src="image/WhatsApp_Image_2025-01-10_at_20.47.46_ff41ac29-removebg-preview.png" alt="Cart" class="sticker-icon cart-sticker">
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <a href="/index.html" class="nav-icon">
+                    <img src="image/WhatsApp_Image_2025-01-10_at_21.12.31_d9320fe3-removebg-preview.png" alt="Home" class="sticker-icon">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Add this menu overlay structure -->
+    <div class="menu-overlay">
+        <button class="menu-close-btn">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="menu-scroll-btn menu-scroll-up">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button class="menu-scroll-btn menu-scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="menu-categories">
+            <div class="category-column">
+                <h3>Collections</h3>
+                <ul>
+                    <li><a href="/MAN'S .html">MAN'S Collection</a></li>
+                    <li><a href="/WOMAN'S.html">WOMAN'S Collection</a></li>
+                    <li><a href="/HIM-HAR.html">COUPLE Collection</a></li>
+                    <li><a href="/MAN'S OUTFIT SET'S.html">MAN'S OUTFIT SET'S Collection</a></li>
+                    <li><a href="/WOMAN'S OUTFIT SET'S.html">WOMAN'S OUTFIT SET'S Collection</a></li>
+                    <li><a href="/ACCESSORIES.html">ACCESSORIES Collection</a></li>
+                </ul>
+            </div>
+            <div class="category-column">
+                <h3>Info</h3>
+                <ul>
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="/about.html">Contact</a></li>
+                    <li><a href="/orders.html">Shipping info</a></li>
+                    <li><a href="/orders.html">Returns</a></li>
+                    <li><a href="/about.html">Size Guide</a></li>
+                </ul>
+            </div>
+            <div class="category-column">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="/index.html">HOME</a></li>
+                    <li><a href="/profile.html">PROFILE</a></li>
+                    <li><a href="/cart.html">CART</a></li>
+                    <li><a href="/orders.html"> MY ORDER</a></li>
+                    <li><a href="/about.html"> ABOUT</a></li>
+                    <li><a href="/privacy-policy.html">PRIVACY-POLICY</a></li>
+                    <li><a href="/terms-of-service.html">TERMS OF SERVICE</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+
+      <!-- Main Content -->
+    <main class="product-view">
+        <div class="product-container">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img id="mainImage" src="" alt="Product Image">
+                    <button class="carousel-btn prev-btn">
+                        <i class="fas fa-chevron-lefft"></i>
+                    </button>
+                    <button class="carousel-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                </div>
+                <div class="thumbnail-container">
+                    <!-- Thumbnails will be dynamically added -->
+                </div>
+            </div>
+            
+            <div class="product-details">
+                <span id="productCategory" class="product-category"></span>
+                <h1 id="productTitle" class="product-title"></h1>
+                <div class="product-price">
+                    <span id="productPrice"></span>
+                </div>
+                <div class="stock-status">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Out of stock </span>
+                </div>
+                
+                <div class="size-selector">
+                    <h3>Select Size</h3>
+                    <div class="size-options">
+                        <button class="size-btn" data-size="M">M</button>
+                        <button class="size-btn" data-size="L">L</button>
+                        <button class="size-btn" data-size="XL">XL</button>
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <h3>Quantity</h3>
+                    <div class="quantity-controls">
+                        <button id="decreaseQuantity">-</button>
+                        <input type="number" id="quantity" value="1" min="1" max="10">
+                        <button id="increaseQuantity">+</button>
+                    </div>
+                </div>
+
+                <div class="product-actions">
+                    <button id="addToCart" class="add-to-cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="btn-text">Add to Cart</span>
+                    </button>
+                    <button id="buyNow" class="buy-now-btn">
+                        <i class="fas fa-bolt"></i>
+                        <span class="btn-text">Buy Now</span>
+                    </button>
+                </div>
+
+                <!-- Add Product Tabs -->
+                <div class="product-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="tab-description">Description</button>
+                        <button class="tab-btn" data-tab="tab-specifications">Specifications</button>
+                        <button class="tab-btn" data-tab="tab-reviews">Reviews</button>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-panel" id="tab-description">
+                            <h3>Product Description</h3>
+                            <p>Premium quality urban streetwear. Features include comfort fit, durable material, and unique design elements.</p>
+                        </div>
+                        <div class="tab-panel" id="tab-specifications">
+                            <h3>Specifications</h3>
+                            <ul class="specs-list">
+                                <li><strong>Material:</strong> Premium Cotton</li>
+                                <li><strong>Fit:</strong> Regular</li>
+                                <li><strong>Style:</strong> Casual</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel" id="tab-reviews">
+                            <h3>Customer Reviews</h3>
+                            <div class="reviews-summary">
+                                <div class="average-rating">
+                                    <span class="rating-number">4.5</span>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span class="total-reviews">(125 reviews)</span>
+                                </div>
+                                <button class="write-review-btn">
+                                    <i class="fas fa-pen"></i>
+                                    Write a Review
+                                </button>
+                            </div>
+                            <div class="reviews-list">
+                                <!-- Reviews will be dynamically added here -->
+                            </div>
+                            <button class="view-more-btn">View More Reviews</button>
+                        </div>
+                    </div>
+                </div>
+                  
+                <!-- Add Poster Grid Section -->
+                <div class="poster-grid">
+                    <div class="poster-item">
+                        <img src="/image/default-thumbnail-1.jpg" alt="Product Thumbnail 1" class="poster-thumbnail" 
+                             onerror="this.src='/image/placeholder.jpg'">
+                        <div class="poster-overlay">
+                            <h3 class="poster-title">View Product</h3>
+                        </div>
+                    </div>
+                    <div class="poster-item">
+                        <img src="/image/default-thumbnail-2.jpg" alt="Product Thumbnail 2" class="poster-thumbnail"
+                             onerror="this.src='/image/placeholder.jpg'">
+                        <div class="poster-overlay">
+                            <h3 class="poster-title">View Product</h3>
+                        </div>
+                    </div>
+                    <div class="poster-item">
+                        <img src="/image/default-thumbnail-3.jpg" alt="Product Thumbnail 3" class="poster-thumbnail"
+                             onerror="this.src='/image/placeholder.jpg'">
+                        <div class="poster-overlay">
+                            <h3 class="poster-title">View Product</h3>
+                        </div>
+                    </div>
+                    <div class="poster-item">
+                        <img src="/image/default-thumbnail-4.jpg" alt="Product Thumbnail 4" class="poster-thumbnail"
+                             onerror="this.src='/image/placeholder.jpg'">
+                        <div class="poster-overlay">
+                            <h3 class="poster-title">View Product</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Template Section -->
+                <section class="template-section">
+                    <div class="template-container">
+                        <div class="template-left">
+                            <h2>Similar Products</h2>
+                            <p>You might also like these items from our collection</p>
+                        </div>
+                        <div class="template-right">
+                            <div class="template-image-grid">
+                                <!-- Similar products will be dynamically loaded here -->
+                                <div class="loading-spinner">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+    </main>
+
+    <!-- Footer -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-section brand-section">
+            <img src="image/WhatsApp_Image_2025-01-16_at_22.06.40_0fe6baa7-removebg-preview - Copy.png" alt="HASUTA" class="footer-logo">
+            <p class="brand-description">Contemporary streetwear brand embodying urban culture and modern fashion. Discover unique designs that define your style.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/index.html">Shop</a></li>
+                <li><a href="/MAN'S .html">MAN'S Collections</a></li>
+                <li><a href="/WOMAN'S.html">WOMAN'S Collections</a></li>
+                <li><a href="/ACCESSORIES.html">ACCESSORIES Collections</a></li>
+                <li><a href="/about.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Help</h3>
+            <ul class="footer-links">
+                <li><a href="/orders.html">Shipping Info</a></li>
+                <li><a href="/orders.html">Returns</a></li>
+                <li><a href="/about.html">How to Order</a></li>
+                <li><a href="/order-placed.html">Track Order</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="Twitter" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" aria-label="Facebook" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://wa.me/+919999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <a href="https://www.weblike.ai" target="_blank" rel="noopener noreferrer" class="built-by">
+                Powered By Weblike.ai
+                <img src="image/icons/logo.webp" alt="HASUTA sticker" class="built-by-sticker">
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-left">
+            <p>&copy; 2024 HASUTA. All rights reserved.</p>
+        </div>
+        <div class="footer-bottom-links">
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/terms-of-service.html">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+    <script type="module" src="/js/firebase-config.js"></script>
+    <script type="module" src="/js/firebase-utils.js"></script>
+    <script type="module" src="/product/mans product/js/product 2view.js"></script>
+</body>
+</html>
+

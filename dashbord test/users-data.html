@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Data - HASUTA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/dashbord test/css3/users-data.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="image/apple-touch-icon.png" alt="HASUTA" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-link" data-page="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-link active" data-page="users">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="customer-orders.html" class="nav-link" data-page="orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="all-available-products.html" class="nav-link">
+                    <i class="fas fa-box"></i>
+                    <span>Products</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Users Data</h1>
+                </div>
+                <div class="header-right">
+                    <div class="admin-profile">
+                        <img src="image/apple-touch-icon.png" alt="Admin" class="admin-image">
+                        <span class="admin-name">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Users Table -->
+            <div class="users-table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Overlay Components -->
+    <div id="confirmationOverlay" class="overlay">
+        <div class="overlay-content">
+            <h2>Confirm Action</h2>
+            <p id="confirmationMessage">Are you sure you want to proceed?</p>
+            <div class="overlay-buttons">
+                <button id="confirmYes" class="btn btn-danger">Yes</button>
+                <button id="confirmNo" class="btn btn-secondary">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="messageOverlay" class="overlay">
+        <div class="overlay-content">
+            <h2 id="messageTitle">Message</h2>
+            <p id="messageText"></p>
+            <div class="overlay-buttons">
+                <button id="messageOk" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Data Overlay -->
+    <div id="cartDataOverlay" class="overlay">
+        <div class="overlay-content cart-overlay">
+            <div class="overlay-header">
+                <h2>User Cart Data</h2>
+                <button class="close-btn" id="closeCartOverlay">&times;</button>
+            </div>
+            <div class="cart-content">
+                <div class="user-info">
+                    <h3>User Information</h3>
+                    <p id="cartUserName"></p>
+                    <p id="cartUserEmail"></p>
+                </div>
+                <div class="cart-items">
+                    <h3>Cart Items</h3>
+                    <div id="cartItemsList"></div>
+                </div>
+            </div>
+            <div class="overlay-buttons">
+                <button id="closeCartBtn" class="btn btn-primary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js3/firebase-config.js"></script>
+    <script type="module" src="/dashbord test/js3/users-data.js"></script>
+</body>
+</html>

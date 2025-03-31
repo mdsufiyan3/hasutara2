@@ -1,0 +1,12 @@
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+
+# Serve correct MIME type for favicon
+AddType image/x-icon .ico
+AddType image/png .png
+
+# Serve correct MIME type for webmanifest
+AddType application/manifest+json .webmanifest

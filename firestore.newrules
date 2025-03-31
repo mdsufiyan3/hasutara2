@@ -1,0 +1,82 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email in ['abufiyan8@gmail.com'];
+    }
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // User data rules
+    match /users/{userId} {
+      // Allow user to read their own data
+      allow read: if request.auth != null && request.auth.token.email == userId;
+      
+      allow read, write: if true;  // Allow user operations during checkout
+      
+      match /cart/{document=**} {
+        allow read, write: if true;  // Allow cart operations
+      }
+      
+      match /wishlist/{document=**} {
+        allow read, write: if true;  // Allow wishlist operations
+      }
+      
+      match /orders/{document=**} {
+        allow read, write: if true;  // Allow order creation
+      }
+
+<<<<<<< HEAD
+=======
+      // Updated notifications rules
+      match /notifications/{notificationId} {
+        // Allow users to read their own notifications
+        allow read: if request.auth != null && request.auth.token.email == userId;
+        
+        // Allow users to create their own notifications
+        allow create: if request.auth != null && 
+                     request.auth.token.email == userId &&
+                     request.resource.data.keys().hasAll(['type', 'title', 'message', 'timestamp', 'category']);
+        
+        // Allow users to update only the 'read' status of their notifications
+        allow update: if request.auth != null && 
+                     request.auth.token.email == userId &&
+                     request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read']);
+        
+        // Allow users to delete their own notifications
+        allow delete: if request.auth != null && request.auth.token.email == userId;
+      }
+
+>>>>>>> a7cc94ac0ae81d78165305c0e8c664e7e5e76fbf
+      match /reviews/{reviewId} {
+        allow read: if true;
+        allow write: if isAuthenticated(); // Changed: Allow any authenticated user to write reviews
+      }
+<<<<<<< HEAD
+
+      // Add notifications rules back
+      match /notifications/{notificationId} {
+        allow read: if request.auth != null && request.auth.token.email == userId;
+        allow create: if request.auth != null && request.auth.token.email == userId;
+        allow update: if request.auth != null && request.auth.token.email == userId;
+        allow delete: if request.auth != null && request.auth.token.email == userId;
+      }
+=======
+>>>>>>> a7cc94ac0ae81d78165305c0e8c664e7e5e76fbf
+    }
+
+    // Product collection rules
+    match /products/{productId} {
+      allow read: if true;  // Anyone can read product details
+      allow create, update, delete: if isAdmin(); // Only admins can manage products
+      
+      match /reviews/{reviewId} {
+        allow read: if true;
+        allow write: if isAuthenticated(); // Changed: Allow any authenticated user to write reviews
+      }
+    }
+  }
+}

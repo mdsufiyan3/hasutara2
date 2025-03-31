@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Analytics - HASUTA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/dashbord test/css3/order-chart.css">
+    <link rel="stylesheet" href="/dashbord test/css3/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="image/apple-touch-icon.png" alt="HASUTA" class="logo-image">
+            </div>
+            <nav class="nav-menu">
+                <a href="/dashbord test/dashboard.html" class="nav-link" title="Dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/dashbord test/customer-orders.html" class="nav-link" title="Orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="/dashbord test/order-chart.html" class="nav-link active" title="Analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="/dashbord test/all-available-products.html" class="nav-link" title="Products">
+                    <i class="fas fa-box"></i>
+                    <span>Products</span>
+                </a>
+                <a href="/dashbord test/users-data.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Order Analytics</h1>
+                <div class="month-filter">
+                    <select id="monthSelector">
+                        <option value="all">All Time</option>
+                        <!-- Month options will be populated by JavaScript -->
+                    </select>
+                </div>
+            </header>
+
+            <div class="charts-grid">
+                <!-- Total Orders Chart -->
+                <div class="chart-card">
+                    <h2>Total Orders</h2>
+                    <canvas id="ordersChart"></canvas>
+                </div>
+
+                <!-- Order Status Distribution -->
+                <div class="chart-card">
+                    <h2>Order Status Distribution</h2>
+                    <canvas id="statusChart"></canvas>
+                </div>
+
+                <!-- Revenue Chart -->
+                <div class="chart-card">
+                    <h2>Revenue Overview</h2>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+
+                <!-- Add this new section before stats-container -->
+                <div class="chart-card top-products">
+                    <h2>Top Selling Products</h2>
+                    <div class="product-list" id="topProducts">
+                        <!-- Products will be inserted here -->
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+
+                <!-- Order Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card" onclick="location.href='customer-orders.html'">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="stat-info">
+                            <h3>Total Orders</h3>
+                            <span id="totalOrders">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div class="stat-info">
+                            <h3>Total Revenue</h3>
+                            <span id="totalRevenue">₹0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="location.href='customer-orders.html?status=pending'">
+                        <i class="fas fa-truck"></i>
+                        <div class="stat-info">
+                            <h3>Pending Delivery</h3>
+                            <span id="pendingDelivery">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="/dashbord test/js3/firebase-config.js"></script>
+    <script type="module" src="/dashbord test/js3/order-chart.js"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<style>
+    /* Footer Styles */
+    .footer {
+        background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), #000);
+        padding: 6rem 2rem 2rem;
+        margin-top: 4rem;
+        border-top: 1px solid rgba(107, 127, 215, 0.2);
+        position: relative;
+    }
+
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--primary-color),
+            transparent
+        );
+    }
+
+    .footer-grid {
+        max-width: 1800px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .brand-section {
+        max-width: 400px;
+    }
+
+    .footer-logo {
+        height: 40px;
+        margin-bottom: 1.5rem;
+    }
+
+    .brand-description {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .footer-section h3 {
+        color: #fff;
+        font-family: 'Syncopate', sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+        color: var(--primary-color);
+        transform: translateX(5px);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.2rem;
+    }
+
+    .social-link:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+        color: #fff;
+    }
+
+    .built-by {
+        background: linear-gradient(45deg, #fff, var(--primary-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        border: 1px solid rgba(107, 127, 215, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .built-by:hover {
+        transform: translateY(-2px);
+        border-color: var(--primary-color);
+        box-shadow: 0 6px 20px rgba(107, 127, 215, 0.3);
+    }
+
+    .built-by-sticker {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .footer-bottom {
+        max-width: 1800px;
+        margin: 0 auto;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .footer-bottom-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-bottom-links a:hover {
+        color: var(--primary-color);
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-5px) rotate(5deg);
+        }
+    }
+
+    /* Mobile Responsive Footer */
+    @media (max-width: 1200px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .brand-section {
+            grid-column: 1 / -1;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin: 0 auto 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer {
+            padding: 4rem 1.5rem 1.5rem;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            text-align: center;
+        }
+
+        .social-links {
+            justify-content: center;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .footer-bottom-links {
+            justify-content: center;
+        }
+
+        .built-by {
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+        }
+        
+        .built-by-sticker {
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+    /* Product Page Specific Footer Styles */
+    .product-footer {
+        margin-top: 0;
+        border-top: none;
+        background: transparent;
+        position: relative;
+        z-index: 1;
+    }
+
+    .product-footer::before {
+        display: none;
+    }
+
+    .product-footer .footer-grid {
+        padding-top: 4rem;
+        border-top: 1px solid rgba(107, 127, 215, 0.1);
+    }
+</style>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-section brand-section">
+            <img src="image/WhatsApp_Image_2025-01-16_at_22.06.40_0fe6baa7-removebg-preview - Copy.png" alt="HASUTARA" class="footer-logo">
+            <p class="brand-description">Contemporary streetwear brand embodying urban culture and modern fashion. Discover unique designs that define your style.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="MAN'S .html">MAN'S Collections</a></li>
+                <li><a href="WOMAN'S.html">WOMAN'S Collections</a></li>
+                <li><a href="ACCESSORIES.html">ACCESSORIES Collections</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Help</h3>
+            <ul class="footer-links">
+                <li><a href="orders.html">Shipping Info</a></li>
+                <li><a href="orders.html">Returns</a></li>
+                <li><a href="about.html">How to Order</a></li>
+                <li><a href="order-placed.html">Track Order</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="Twitter" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" aria-label="Facebook" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://wa.me/+919999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <a href="https://www.weblike.ai" target="_blank" rel="noopener noreferrer" class="built-by">
+                Powered By Weblike.ai
+                <img src="image/icons/logo.webp" alt="HASUTARA sticker" class="built-by-sticker">
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-left">
+            <p>&copy; 2025 HASUTARA. All rights reserved.</p>
+        </div>
+        <div class="footer-bottom-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Product Specific Footer -->
+<template id="product-footer">
+    <footer class="footer product-footer">
+        <div class="footer-grid">
+            <div class="footer-section brand-section">
+                <img src="/image/WhatsApp_Image_2025-01-16_at_22.06.40_0fe6baa7-removebg-preview - Copy.png" alt="HASUTARA" class="footer-logo">
+                <p class="brand-description">Contemporary streetwear brand embodying urban culture and modern fashion. Discover unique designs that define your style.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/MAN'S.html">MAN'S Collections</a></li>
+                    <li><a href="/WOMAN'S.html">WOMAN'S Collections</a></li>
+                    <li><a href="/couple.html">COUPLE Collections</a></li>
+                    <li><a href="/NEW ARRIVALS.html">NEW ARRIVALS</a></li>
+                    <li><a href="/ACCESSORIES.html">ACCESSORIES</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <ul class="footer-links">
+                    <li><a href="/size-guide.html">Size Guide</a></li>
+                    <li><a href="/shipping.html">Shipping Info</a></li>
+                    <li><a href="/returns.html">Returns & Exchange</a></li>
+                    <li><a href="/track-order.html">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="Twitter" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://wa.me/+919999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-left">
+                <p>&copy; 2025 HASUTARA. All rights reserved.</p>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms-of-service.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</template>

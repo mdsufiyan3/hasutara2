@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Add Products</title>
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="image/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="image/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="dashbord test/css3/dashboard.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .review-management {
+            display: none;  /* Initially hide the review form */
+        }
+    </style>
+</head>
+<body>
+    <button onclick="handleBack()" class="back-button" title="Go Back">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <!-- Add Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="image/download.png" alt="HASUTARA" class="logo-image">
+        </div>
+        <nav class="nav-menu">
+            <a href="/dashbord test/dashboard.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="admin.html" class="nav-link active">
+                <i class="fas fa-plus"></i>
+                <span>Add Products</span>
+            </a>
+            <!-- Find and replace the Collections section in the sidebar nav-menu -->
+            <div class="nav-section">
+                <div class="nav-section-header" onclick="toggleCollections()">
+                    <span class="nav-section-title">Collections</span>
+                    <i class="fas fa-plus" id="collectionsToggle"></i>
+                </div>
+                <div class="collections-menu" id="collectionsMenu" style="display: none;">
+                    <a href="MAN'S.html" class="nav-link">
+                        <i class="fas fa-tshirt"></i>
+                        <span>MAN'S <i class="fas fa-plus"></i></span>
+                    </a>
+                    <a href="WOMAN'S.html" class="nav-link">
+                        <i class="fas fa-female"></i>
+                        <span>WOMAN'S <i class="fas fa-plus"></i></span>
+                    </a>
+                    <a href="couple.html" class="nav-link">
+                        <i class="fas fa-user-friends"></i>
+                        <span>COUPLE <i class="fas fa-plus"></i></span>
+                    </a>
+                    <a href="ACCESSORIES.html" class="nav-link">
+                        <i class="fas fa-glasses"></i>
+                        <span>ACCESSORIES <i class="fas fa-plus"></i></span>
+                    </a>
+                </div>
+            </div>
+            <!-- Original links continue -->
+            <a href="/dashbord test/users-data.html" class="nav-link">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
+            </a>
+            <a href="/dashbord test/customer-orders.html" class="nav-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Orders</span>
+            </a>
+            <a href="/dashbord test/all-available-products.html" class="nav-link">
+                <i class="fas fa-box"></i>
+                <span>Products</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Modify admin-container to account for sidebar -->
+    <div class="admin-container">
+        <div id="loginSection">
+            <h2>Admin Login Required</h2>
+            <p>Please log in with your admin account (abufiyan8@gmail.com)</p>
+            <div id="googleBtn" class="google-btn">
+                <div class="google-icon-wrapper">
+                    <img class="google-icon" src="dashbord test/image/profile pic/download.png"/>
+                </div>
+                <p class="btn-text">Sign in with Google</p>
+            </div>
+            <p id="loginStatus"></p>
+        </div>
+
+        <div id="adminSection" style="display: none;">
+            <h1 id="formTitle">Add New Product</h1>
+            <!-- Add the button here, before the form -->
+            <button id="fillExampleData" class="secondary-button" style="margin-bottom: 20px;">Fill Example Data</button>
+            <form id="productForm" class="product-form">
+                <input type="hidden" id="productId" name="productId">
+                <div class="form-group">
+                    <label for="title">Product Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" id="price" name="price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="originalPrice">Original Price</label>
+                        <input type="number" id="originalPrice" name="originalPrice" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sku">SKU</label>
+                        <input type="text" id="sku" name="sku">
+                    </div>
+                    <div class="form-group stock-group">
+                        <label for="stockLevel">Stock Level</label>
+                        <div class="stock-input-group">
+                            <input type="number" id="stockLevel" name="stockLevel" required>
+                            <button type="button" id="quickUpdateStock" class="stock-update-btn" title="Quick Stock Update">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="images">Images (Maximum 5 images)</label>
+                    <p class="helper-text">Drag and drop images or click to choose</p>
+                    <div class="image-upload-container" id="dropZone">
+                        <div class="upload-placeholder">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & Drop images here</p>
+                            <p>or</p>
+                        </div>
+                        <input type="file" id="imageUpload" accept="image/*" multiple class="image-input" max="5">
+                        <button type="button" class="upload-btn" onclick="document.getElementById('imageUpload').click()">
+                            Choose Images (0/5)
+                        </button>
+                        <div id="imagePreview" class="image-preview"></div>
+                        <p id="imageError" class="error-text"></p>
+                        <textarea id="images" name="images" required readonly></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Specifications</label>
+                    <div class="specifications">
+                        <input type="text" name="material" placeholder="Material">
+                        <input type="text" name="color" placeholder="Color">
+                        <input type="text" name="fabric" placeholder="Fabric">
+                        <input type="text" name="care" placeholder="Care Instructions">
+                        <input type="text" name="washCare" placeholder="Wash Care">
+                    </div>
+                </div>
+
+                <!-- Add this new sizes section -->
+                <div class="form-group">
+                    <label>Available Sizes</label>
+                    <div class="sizes-container">
+                        <div class="size-checkboxes">
+                            <label class="size-checkbox">
+                                <input type="checkbox" name="sizes" value="M" checked> M
+                            </label>
+                            <label class="size-checkbox">
+                                <input type="checkbox" name="sizes" value="L" checked> L
+                            </label>
+                            <label class="size-checkbox">
+                                <input type="checkbox" name="sizes" value="XL" checked> XL
+                            </label>
+                        </div>
+                        <p class="helper-text">Select available sizes for this product</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="MY PRODUCT">MY PRODUCT</option>
+                        <option value="MAN'S">MAN'S</option>
+                        <option value="WOMANS">WOMAN'S</option>
+                        <option value="COUPLE">COUPLE</option>
+                        <option value="ACCESSORIES">ACCESSORIES</option>
+                        <option value="BOYS">BOYS</option>
+                    </select>
+                </div>
+
+                <!-- Add new SECTION dropdown -->
+                <div class="form-group">
+                    <label for="section">Section</label>
+                    <select id="section" name="section" required>
+                        <option value="">Select Section</option>
+                        <!-- MAN'S sections -->
+                        <option value="SHIRTS" data-category="MAN'S BOYS">SHIRTS</option>
+                        <option value="TSHIRTS" data-category="MAN'S BOYS">TSHIRTS</option>
+                        <option value="JINSE" data-category="MAN'S BOYS">JINSE</option>
+                        <option value="BAGGY TROUSER" data-category="MAN'S BOYS">BAGGY TROUSER</option>
+                        <!-- WOMAN'S sections -->
+                        <option value="TOPS" data-category="WOMANS">TOPS</option>
+                        <option value="BOTTOMS" data-category="WOMANS">BOTTOMS</option>
+                        <option value="DRESSES" data-category="WOMANS">DRESSES</option>
+                        <option value="OUTERWEAR" data-category="WOMANS">OUTERWEAR</option>
+                        <!-- ACCESSORIES sections -->
+                        <option value="BAGS" data-category="ACCESSORIES">BAGS</option>
+                        <option value="WATCHES" data-category="ACCESSORIES">WATCHES</option>
+                        <option value="JEWELLERY" data-category="ACCESSORIES">JEWELLERY</option>
+                        <option value="BELTS" data-category="ACCESSORIES">BELTS</option>
+                        <!-- COUPLE sections -->
+                        <option value="OUTFIT-SET" data-category="COUPLE">Complete Outfit Sets</option>
+                        <option value="TSHIRTS-TOPS" data-category="COUPLE">T-Shirts & Tops</option>
+                        <option value="SHIRTS-DRESSES" data-category="COUPLE">Shirts & Dresses</option>
+                        <option value="JEANS-BOTTOMS" data-category="COUPLE">Jeans & Bottoms</option>
+                        <option value="HOODIES-SET" data-category="COUPLE">Matching Hoodies</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn">Add Product</button>
+                <button type="button" id="cancelEdit" style="display: none" class="secondary-button">Cancel Edit</button>
+            </form>
+
+            <!-- Move Existing Reviews section here -->
+            <div class="reviews-list">
+                <div class="reviews-header">
+                    <h3>Existing Reviews</h3>
+                    <button type="button" class="add-review-btn" onclick="scrollToAddReview()">
+                        <i class="fas fa-plus"></i>
+                        Add Review
+                    </button>
+                </div>
+                <div id="reviewsList"></div>
+            </div>
+
+            <!-- Add this new dialog after the form -->
+            <dialog id="stockUpdateDialog" class="stock-dialog">
+                <form id="stockUpdateForm" method="dialog">
+                    <h2>Update Stock Level</h2>
+                    <div class="form-group">
+                        <label for="newStockLevel">New Stock Level</label>
+                        <input type="number" id="newStockLevel" name="newStockLevel" min="0" required>
+                    </div>
+                    <div class="dialog-buttons">
+                        <button type="submit" class="primary-btn">Update Stock</button>
+                        <button type="button" class="secondary-btn" onclick="this.closest('dialog').close()">Cancel</button>
+                    </div>
+                </form>
+            </dialog>
+
+            <button id="addExampleProducts" class="secondary-button">Add Example Products</button>
+
+            <!-- Add Review Management Section -->
+            <div class="review-management" id="reviewManagement">
+                <div class="review-header">
+                    <h2>Review Management</h2>
+                    <button type="button" class="close-review-btn" onclick="toggleReviewForm()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="reviewForm" class="review-form">
+                    <div class="form-group">
+                        <label for="reviewerName">Reviewer Name</label>
+                        <input type="text" id="reviewerName" name="reviewerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1"><i class="fas fa-star"></i></label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewText">Review Text</label>
+                        <textarea id="reviewText" name="reviewText" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewImages">Review Images (Optional)</label>
+                        <div class="review-image-upload">
+                            <div class="image-preview" id="reviewImagePreview"></div>
+                            <button type="button" class="upload-btn" onclick="document.getElementById('reviewImages').click()">
+                                Add Photos (0/5)
+                            </button>
+                            <input type="file" id="reviewImages" name="reviewImages" accept="image/*" multiple 
+                                   style="display: none;" onchange="handleReviewImageSelect(this)">
+                        </div>
+                    </div>
+                    
+                    <button type="submit">Add Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth } from './js/firebase-config.js';
+        import { signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { 
+            addProduct, 
+            addExampleProducts, 
+            getProduct, 
+            updateProduct, 
+            updateStockLevel,
+            addReview,      // Add this import
+            getReviews,     // Add this import
+            deleteReview    // Add this import
+        } from './js/admin-utils.js';
+
+        let isSigningIn = false; // Prevent multiple sign-in attempts
+
+        document.getElementById('googleBtn').addEventListener('click', async () => {
+            if (isSigningIn) return; // Prevent multiple clicks
+            
+            try {
+                isSigningIn = true;
+                loginStatus.textContent = 'Opening Google login...';
+                
+                const provider = new GoogleAuthProvider();
+                provider.setCustomParameters({
+                    prompt: 'select_account',
+                    login_hint: 'abufiyan8@gmail.com'
+                });
+
+                // Clear any existing auth state
+                await auth.signOut();
+                
+                // Attempt sign in
+                const result = await signInWithPopup(auth, provider);
+                console.log('Sign in successful:', result.user.email);
+                
+                if (result.user.email === 'abufiyan8@gmail.com') {
+                    loginStatus.textContent = 'Admin access granted!';
+                    loginSection.style.display = 'none';
+                    adminSection.style.display = 'block';
+                } else {
+                    loginStatus.textContent = 'Not authorized as admin';
+                    await auth.signOut();
+                }
+
+            } catch (error) {
+                console.error('Sign in error:', error);
+                if (error.code === 'auth/popup-closed-by-user') {
+                    loginStatus.textContent = 'Login cancelled - Please try again';
+                } else if (error.code === 'auth/cancelled-popup-request') {
+                    loginStatus.textContent = 'Another login attempt is in progress';
+                } else {
+                    loginStatus.textContent = `Login error: ${error.message}`;
+                }
+            } finally {
+                isSigningIn = false;
+            }
+        });
+
+        const adminEmails = ['abufiyan8@gmail.com'];
+        const loginSection = document.getElementById('loginSection');
+        const adminSection = document.getElementById('adminSection');
+        const loginStatus = document.getElementById('loginStatus');
+
+        // Add debug logging
+        console.log('Admin page loaded');
+
+        // Check authentication state
+        auth.onAuthStateChanged((user) => {
+            console.log('Auth state changed:', user?.email);
+            
+            if (user) {
+                console.log('User logged in:', user.email);
+                if (adminEmails.includes(user.email)) {
+                    console.log('Admin access granted');
+                    loginSection.style.display = 'none';
+                    adminSection.style.display = 'block';
+                } else {
+                    console.log('Not an admin user');
+                    loginSection.style.display = 'block';
+                    adminSection.style.display = 'none';
+                    auth.signOut(); // Sign out non-admin users
+                }
+            } else {
+                console.log('No user logged in');
+                loginSection.style.display = 'block';
+                adminSection.style.display = 'none';
+            }
+        });
+
+        // Add this function to populate form with product data
+        async function loadProductForEdit(productId) {
+            try {
+                const product = await getProduct(productId);
+                
+                // Update form title and button
+                document.getElementById('formTitle').textContent = 'Edit Product';
+                document.getElementById('submitBtn').textContent = 'Update Product';
+                document.getElementById('cancelEdit').style.display = 'block';
+                
+                // Populate form fields
+                document.getElementById('productId').value = product.id;
+                document.getElementById('title').value = product.title;
+                document.getElementById('price').value = product.price;
+                document.getElementById('originalPrice').value = product.originalPrice;
+                document.getElementById('sku').value = product.sku;
+                document.getElementById('stockLevel').value = product.stockLevel;
+                document.getElementById('description').value = product.description;
+                document.getElementById('category').value = product.category;
+                
+                // Handle specifications
+                document.querySelector('input[name="material"]').value = product.specifications?.material || '';
+                document.querySelector('input[name="color"]').value = product.specifications?.color || '';
+                document.querySelector('input[name="fabric"]').value = product.specifications?.fabric || '';
+                document.querySelector('input[name="care"]').value = product.specifications?.care || '';
+                document.querySelector('input[name="washCare"]').value = product.specifications?.washCare || '';
+                
+                // Handle images
+                selectedImages = product.images.map(path => ({
+                    name: path.split('/').pop(),
+                    path: path
+                }));
+                updateImagesList();
+                
+                // Show image previews
+                const preview = document.getElementById('imagePreview');
+                preview.innerHTML = '';
+                selectedImages.forEach(img => {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'preview-container';
+                    
+                    const imgElement = document.createElement('img');
+                    imgElement.src = img.path;
+                    imgElement.className = 'preview-thumb';
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.innerHTML = '×';
+                    removeBtn.className = 'remove-image';
+                    removeBtn.onclick = () => {
+                        imgContainer.remove();
+                        selectedImages = selectedImages.filter(i => i.path !== img.path);
+                        updateImagesList();
+                    };
+                    
+                    imgContainer.appendChild(imgElement);
+                    imgContainer.appendChild(removeBtn);
+                    preview.appendChild(imgContainer);
+                });
+
+                // Set size checkboxes
+                const sizeCheckboxes = document.querySelectorAll('input[name="sizes"]');
+                sizeCheckboxes.forEach(checkbox => {
+                    checkbox.checked = product.sizes.includes(checkbox.value);
+                });
+
+                // Add this line to load reviews after product details
+                await loadReviews(productId);
+            } catch (error) {
+                alert('Error loading product: ' + error.message);
+            }
+        }
+
+        // Add cancel edit handler
+        document.getElementById('cancelEdit').addEventListener('click', () => {
+            document.getElementById('formTitle').textContent = 'Add New Product';
+            document.getElementById('submitBtn').textContent = 'Add Product';
+            document.getElementById('cancelEdit').style.display = 'none';
+            document.getElementById('productForm').reset();
+            selectedImages = [];
+            updateImagesList();
+            document.getElementById('imagePreview').innerHTML = '';
+        });
+
+        // Modify form submit handler
+        document.getElementById('productForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const productId = formData.get('productId');
+            const category = formData.get('category');
+            const section = formData.get('section'); // Add this line
+            
+            // Get selected sizes
+            const selectedSizes = [...document.querySelectorAll('input[name="sizes"]:checked')]
+                .map(input => input.value);
+            
+            const productData = {
+                title: formData.get('title'),
+                price: Number(formData.get('price')),
+                originalPrice: Number(formData.get('originalPrice')),
+                sku: formData.get('sku'),
+                stockLevel: Number(formData.get('stockLevel')),
+                images: selectedImages.map(img => img.path),
+                description: formData.get('description'),
+                specifications: {
+                    material: formData.get('material'),
+                    color: formData.get('color'),
+                    fabric: formData.get('fabric'),
+                    care: formData.get('care'),
+                    washCare: formData.get('washCare')
+                },
+                sizes: selectedSizes,
+                category: category,
+                section: section  // Add this line
+            };
+
+            try {
+                if (productId) {
+                    // This is an update operation
+                    await updateProduct(productId, productData);
+                    alert('Product updated successfully!');
+                } else if (category === 'MY PRODUCT') {
+                    // Prevent new products in MY PRODUCT category
+                    alert('Cannot add new products to MY PRODUCT category. Only updates are allowed.');
+                    return;
+                } else {
+                    // This is a new product in a different category
+                    await addProduct(productData);
+                    alert('Product added successfully!');
+                }
+                
+                // Reset form and UI
+                e.target.reset();
+                selectedImages = [];
+                updateImagesList();
+                document.getElementById('imagePreview').innerHTML = '';
+                document.getElementById('formTitle').textContent = 'Add New Product';
+                document.getElementById('submitBtn').textContent = 'Add Product';
+                document.getElementById('cancelEdit').style.display = 'none';
+                
+            } catch (error) {
+                alert(`Error ${productId ? 'updating' : 'adding'} product: ` + error.message);
+            }
+        });
+
+        // Check URL for edit parameter when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const editProductId = urlParams.get('edit');
+            if (editProductId) {
+                loadProductForEdit(editProductId);
+            }
+        });
+
+        document.getElementById('addExampleProducts').addEventListener('click', async () => {
+            try {
+                await addExampleProducts();
+                alert('Example products added successfully!');
+            } catch (error) {
+                alert('Error adding example products: ' + error.message);
+            }
+        });
+
+        // Global variable to store selected images
+        let selectedImages = [];
+
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const preview = document.getElementById('imagePreview');
+            const imagesTextarea = document.getElementById('images');
+            const errorText = document.getElementById('imageError');
+            const uploadBtn = document.querySelector('.upload-btn');
+            const files = [...event.target.files];
+
+            // Check if adding new files would exceed 5 images
+            if (selectedImages.length + files.length > 5) {
+                errorText.textContent = `You can only select up to 5 images (${selectedImages.length} already selected)`;
+                event.target.value = ''; // Clear selection
+                return;
+            }
+
+            errorText.textContent = '';
+
+            files.forEach(file => {
+                // Check if file is already selected
+                if (selectedImages.some(img => img.name === file.name)) {
+                    return; // Skip duplicate files
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Create preview thumbnail
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'preview-container';
+
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'preview-thumb';
+                    
+                    // Add remove button
+                    const removeBtn = document.createElement('button');
+                    removeBtn.innerHTML = '×';
+                    removeBtn.className = 'remove-image';
+                    removeBtn.onclick = function() {
+                        imgContainer.remove();
+                        selectedImages = selectedImages.filter(img => img.name !== file.name);
+                        updateImagesList();
+                    };
+
+                    imgContainer.appendChild(img);
+                    imgContainer.appendChild(removeBtn);
+                    preview.appendChild(imgContainer);
+
+                    // Add to selected images
+                    selectedImages.push({
+                        name: file.name,
+                        path: `image/${file.name}`
+                    });
+
+                    updateImagesList();
+                }
+                reader.readAsDataURL(file);
+            });
+
+            // Clear file input for next selection
+            event.target.value = '';
+        });
+
+        // Helper function to update textarea and button text
+        function updateImagesList() {
+            const imagesTextarea = document.getElementById('images');
+            const uploadBtn = document.querySelector('.upload-btn');
+            
+            imagesTextarea.value = selectedImages.map(img => img.path).join(', ');
+            uploadBtn.textContent = `Choose Images (${selectedImages.length}/5)`;
+        }
+
+        const dropZone = document.getElementById('dropZone');
+        const imageUpload = document.getElementById('imageUpload');
+        
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        // Highlight drop zone when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight(e) {
+            dropZone.classList.add('drag-over');
+        }
+
+        function unhighlight(e) {
+            dropZone.classList.remove('drag-over');
+        }
+
+        // Handle dropped files
+        dropZone.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = [...dt.files];
+            
+            if (selectedImages.length + files.length > 5) {
+                document.getElementById('imageError').textContent = 
+                    `You can only upload up to 5 images (${selectedImages.length} already selected)`;
+                return;
+            }
+            
+            handleFiles(files);
+        }
+
+        function handleFiles(files) {
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    // Check if file is already selected
+                    if (selectedImages.some(img => img.name === file.name)) {
+                        return; // Skip duplicate files
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        addImagePreview(e.target.result, file.name);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function addImagePreview(src, fileName) {
+            const preview = document.getElementById('imagePreview');
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'preview-container';
+
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = 'preview-thumb';
+            
+            const removeBtn = document.createElement('button');
+            removeBtn.innerHTML = '×';
+            removeBtn.className = 'remove-image';
+            removeBtn.onclick = function() {
+                imgContainer.remove();
+                selectedImages = selectedImages.filter(img => img.name !== fileName);
+                updateImagesList();
+            };
+
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(removeBtn);
+            preview.appendChild(imgContainer);
+
+            selectedImages.push({
+                name: fileName,
+                path: `image/${fileName}`
+            });
+
+            updateImagesList();
+        }
+
+        // Add this after existing event listeners
+        document.getElementById('quickUpdateStock').addEventListener('click', () => {
+            const productId = document.getElementById('productId').value;
+            if (!productId) {
+                alert('Please select a product to update stock');
+                return;
+            }
+            
+            const currentStock = document.getElementById('stockLevel').value;
+            const dialog = document.getElementById('stockUpdateDialog');
+            const stockInput = document.getElementById('newStockLevel');
+            stockInput.value = currentStock;
+            dialog.showModal();
+        });
+
+        document.getElementById('stockUpdateForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const productId = document.getElementById('productId').value;
+            const newStockLevel = document.getElementById('newStockLevel').value;
+            
+            try {
+                await updateStockLevel(productId, newStockLevel);
+                document.getElementById('stockLevel').value = newStockLevel;
+                document.getElementById('stockUpdateDialog').close();
+                alert('Stock level updated successfully!');
+            } catch (error) {
+                alert('Error updating stock level: ' + error.message);
+            }
+        });
+
+        // Add this to your existing JavaScript
+        document.getElementById('category').addEventListener('change', function() {
+            const category = this.value;
+            const sectionSelect = document.getElementById('section');
+            const options = sectionSelect.options;
+
+            // Hide all options first
+            for(let i = 0; i < options.length; i++) {
+                const option = options[i];
+                if(option.dataset.category) {
+                    if(category === '') {
+                        option.style.display = 'none';
+                    } else if(option.dataset.category.includes(category)) {
+                        option.style.display = '';
+                    } else {
+                        option.style.display = 'none';
+                    }
+                }
+            }
+
+            // Reset section selection
+            sectionSelect.value = '';
+        });
+
+        // Initialize review management
+        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const productId = document.getElementById('productId').value; // Get ID from current product
+            
+            if (!productId) {
+                alert('Please select a product first');
+                return;
+            }
+            
+            try {
+                const reviewData = {
+                    productId: productId,
+                    name: formData.get('reviewerName'),
+                    rating: parseInt(formData.get('rating')),
+                    text: formData.get('reviewText'),
+                    images: selectedReviewImages, // Add selected images to review data
+                    date: new Date().toISOString()
+                };
+
+                await addReview(reviewData);
+                
+                // Reset form and image preview
+                e.target.reset();
+                document.getElementById('reviewImagePreview').innerHTML = '';
+                selectedReviewImages = [];
+                updateReviewImageCount();
+                
+                alert('Review added successfully!');
+                await loadReviews(productId);
+            } catch (error) {
+                alert('Error adding review: ' + error.message);
+            }
+        });
+
+        async function loadReviews(productId) {
+            const reviewsList = document.getElementById('reviewsList');
+            try {
+                const reviews = await getReviews(productId);
+                reviewsList.innerHTML = reviews.map(review => `
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer-name">${review.name}</span>
+                            <span class="review-date">${new Date(review.date).toLocaleDateString()}</span>
+                            <div class="rating">
+                                ${Array(5).fill('').map((_, i) => 
+                                    `<i class="fas fa-star${i < review.rating ? '' : '-o'}"></i>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        <p class="review-text">${review.text}</p>
+                        <div class="review-actions">
+                            <button onclick="editReview('${review.id}')" class="edit-review">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button onclick="deleteReview('${review.id}')" class="delete-review">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                reviewsList.innerHTML = `<p class="error">Error loading reviews: ${error.message}</p>`;
+            }
+        }
+
+        // Add this function to make deleteReview available globally
+        window.deleteReview = async function(reviewId) {
+            const productId = document.getElementById('productId').value;
+            try {
+                await deleteReview(productId, reviewId);
+                await loadReviews(productId);
+                alert('Review deleted successfully!');
+            } catch (error) {
+                alert('Error deleting review: ' + error.message);
+            }
+        };
+
+        // Add edit review function
+        window.editReview = async function(reviewId) {
+            const productId = document.getElementById('productId').value;
+            try {
+                // Get the review data
+                const reviews = await getReviews(productId);
+                const review = reviews.find(r => r.id === reviewId);
+                if (!review) throw new Error('Review not found');
+
+                // Populate the form with review data
+                document.getElementById('reviewerName').value = review.name;
+                document.getElementById('reviewText').value = review.text;
+                document.querySelector(`input[name="rating"][value="${review.rating}"]`).checked = true;
+                
+                // Scroll to the form
+                document.querySelector('.review-form').scrollIntoView({ behavior: 'smooth' });
+                
+                // Change submit button text
+                const submitBtn = document.querySelector('#reviewForm button[type="submit"]');
+                submitBtn.textContent = 'Update Review';
+                
+                // Add hidden input for review ID
+                let reviewIdInput = document.getElementById('editReviewId');
+                if (!reviewIdInput) {
+                    reviewIdInput = document.createElement('input');
+                    reviewIdInput.type = 'hidden';
+                    reviewIdInput.id = 'editReviewId';
+                    document.getElementById('reviewForm').appendChild(reviewIdInput);
+                }
+                reviewIdInput.value = reviewId;
+                
+            } catch (error) {
+                alert('Error editing review: ' + error.message);
+            }
+        };
+    </script>
+    <!-- Add this script before the closing body tag -->
+    <script>
+        function handleBack() {
+            // Check if there's a previous page in history
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                window.history.back();
+            } else {
+                // If no previous page, go to home
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Optional: Handle back button visibility based on history
+        window.addEventListener('load', function() {
+            const backButton = document.querySelector('.back-button');
+            if (!document.referrer) {
+                backButton.title = "Go to Home";
+            }
+        });
+
+        document.getElementById('fillExampleData').addEventListener('click', () => {
+            // Example data
+            const exampleData = {
+                title: "Premium Cotton T-Shirt",
+                price: 1999,
+                originalPrice: 2999,
+                sku: "HST-" + Math.random().toString(36).substr(2, 6),
+                stockLevel: 50,
+                description: "High-quality cotton t-shirt featuring a modern design. Perfect for casual wear with excellent breathability and comfort. Available in multiple sizes.",
+                material: "100% Premium Cotton",
+                care: "Machine wash cold, Tumble dry low"
+            };
+
+            // Fill the form with example data
+            document.getElementById('title').value = exampleData.title;
+            document.getElementById('price').value = exampleData.price;
+            document.getElementById('originalPrice').value = exampleData.originalPrice;
+            document.getElementById('sku').value = exampleData.sku;
+            document.getElementById('stockLevel').value = exampleData.stockLevel;
+            document.getElementById('description').value = exampleData.description;
+            document.querySelector('input[name="material"]').value = exampleData.material;
+            document.querySelector('input[name="care"]').value = exampleData.care;
+        });
+
+        // Add these functions to handle review image uploads
+        let selectedReviewImages = [];
+
+        function handleReviewImageSelect(input) {
+            const maxImages = 5;
+            const files = Array.from(input.files);
+            const preview = document.getElementById('reviewImagePreview');
+            const uploadBtn = input.parentElement.querySelector('.upload-btn');
+
+            // Check if adding new files would exceed limit
+            if (selectedReviewImages.length + files.length > maxImages) {
+                alert(`You can only upload up to ${maxImages} images`);
+                return;
+            }
+
+            files.forEach(file => {
+                if (!file.type.startsWith('image/')) {
+                    alert('Please upload only image files');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const div = document.createElement('div');
+                    div.className = 'preview-item';
+                    div.innerHTML = `
+                        <img src="${e.target.result}" alt="Review image preview">
+                        <button type="button" class="remove-image" onclick="removeReviewImage(this)">×</button>
+                    `;
+                    preview.appendChild(div);
+                    selectedReviewImages.push(file);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            updateReviewImageCount();
+        }
+
+        function removeReviewImage(button) {
+            const div = button.parentElement;
+            const index = Array.from(div.parentElement.children).indexOf(div);
+            selectedReviewImages.splice(index, 1);
+            div.remove();
+            updateReviewImageCount();
+        }
+
+        function updateReviewImageCount() {
+            const uploadBtn = document.querySelector('.review-image-upload .upload-btn');
+            uploadBtn.textContent = `Add Photos (${selectedReviewImages.length}/5)`;
+        }
+
+        function toggleCollections() {
+            const menu = document.getElementById('collectionsMenu');
+            const toggle = document.getElementById('collectionsToggle');
+            if (menu.style.display === 'none') {
+                menu.style.display = 'block';
+                toggle.classList.replace('fa-plus', 'fa-minus');
+            } else {
+                menu.style.display = 'none';
+                toggle.classList.replace('fa-minus', 'fa-plus');
+            }
+        }
+
+        function scrollToAddReview() {
+            const reviewManagement = document.getElementById('reviewManagement');
+            reviewManagement.style.display = 'block';
+            reviewManagement.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleReviewForm() {
+            const reviewManagement = document.getElementById('reviewManagement');
+            reviewManagement.style.display = 'none';
+            // Clear form when hiding
+            document.getElementById('reviewForm').reset();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - HASUTARA</title>
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/image/favicon-96x96.png" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6B7FD7;
+            --secondary-color: #F5E6BE;
+            --accent-color: #4A5CBC;
+            --background-color: #0a0a0a;
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .terms-container {
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 2rem;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .terms-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .terms-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, var(--primary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(107, 127, 215, 0.3);
+        }
+
+        .terms-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        .terms-section {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(107, 127, 215, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terms-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .terms-section:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            background: rgba(107, 127, 215, 0.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .terms-section:hover::before {
+            opacity: 1;
+        }
+
+        .terms-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .terms-section h2 i {
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .terms-section p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .terms-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            list-style-type: none;
+        }
+
+        .terms-section ul li {
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .terms-section ul li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .important-notice {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(107, 127, 215, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .important-notice h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(107, 127, 215, 0.1), rgba(0, 0, 0, 0.2));
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .contact-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-section a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .contact-section a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .terms-container {
+                padding: 1rem;
+                margin-top: 60px;
+            }
+
+            .terms-header h1 {
+                font-size: 2rem;
+            }
+
+            .terms-section {
+                padding: 1.5rem;
+            }
+
+            .terms-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .home-link {
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            padding: 8px;
+        }
+
+        .home-link:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Add Header with Home Icon -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/index.html" class="home-link">
+                <i class="fas fa-home" style="color: #6B7FD7; font-size: 24px;"></i>
+            </a>
+        </nav>
+    </header>
+
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1>Terms of Service</h1>
+            <p>Last updated: March 10, 2025</p>
+        </div>
+
+        <div class="terms-section">
+            <h2><i class="fas fa-scroll"></i> 1. Agreement to Terms</h2>
+            <p>By accessing and using HASUTARA's website and services, you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access our services.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2><i class="fas fa-user"></i> 2. User Accounts</h2>
+            <p>When you create an account with us, you must provide accurate and complete information. You are responsible for:</p>
+            <ul>
+                <li>Maintaining the security of your account</li>
+                <li>All activities that occur under your account</li>
+                <li>Protecting your password and account information</li>
+                <li>Notifying us immediately of any unauthorized access</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2><i class="fas fa-shopping-cart"></i> 3. Orders and Purchases</h2>
+            <p>By placing an order, you agree to:</p>
+            <ul>
+                <li>Provide current, complete, and accurate purchase information</li>
+                <li>Pay all charges at the prices in effect when the order is submitted</li>
+                <li>Accept our shipping and delivery policies</li>
+                <li>Comply with any additional terms specific to products or services</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2><i class="fas fa-exchange-alt"></i> 4. Returns and Refunds</h2>
+            <p>Our return and refund policy includes:</p>
+            <ul>
+                <li>30-day return window for unused items</li>
+                <li>Items must be in original condition with tags attached</li>
+                <li>Shipping costs for returns are the customer's responsibility</li>
+                <li>Refunds are processed within 7-14 business days</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2><i class="fas fa-ban"></i> 5. Order Cancellation Policy</h2>
+            <p>We reserve the right to cancel orders under the following circumstances:</p>
+            <ul>
+                <li>Product is out of stock or discontinued</li>
+                <li>Pricing or product description errors</li>
+                <li>Suspected fraudulent activity</li>
+                <li>Verification issues with shipping/billing information</li>
+            </ul>
+            <p>In case of cancellation:</p>
+            <ul>
+                <li>Full refund will be processed within 5-7 business days</li>
+                <li>You will be notified via email about the cancellation</li>
+                <li>Alternative product suggestions may be provided when available</li>
+                <li>Store credit may be offered as compensation for any inconvenience</li>
+            </ul>
+            <p>Customer-initiated cancellations:</p>
+            <ul>
+                <li>Orders can be cancelled within 24 hours of placement</li>
+                <li>Cancellation requests must be sent to our support email</li>
+                <li>Orders already shipped cannot be cancelled</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2><i class="fas fa-shield-alt"></i> 5. Intellectual Property</h2>
+            <p>All content on HASUTARA's website, including but not limited to:</p>
+            <ul>
+                <li>Designs, logos, and artwork</li>
+                <li>Text, graphics, and images</li>
+                <li>Product descriptions and photos</li>
+                <li>Website layout and appearance</li>
+            </ul>
+            <p>are the exclusive property of HASUTARA and protected by copyright and trademark laws.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2><i class="fas fa-money-bill-wave"></i> 6. Payment Services</h2>
+            <p>HASUTARA uses PhonePe as our payment gateway service provider. By making payments through our platform:</p>
+            <ul>
+                <li>All payment transactions are processed securely through PhonePe's payment gateway</li>
+                <li>Your payment information is handled according to PhonePe's security standards and policies</li>
+                <li>For any payment-related issues, disputes, or failures, please contact PhonePe support directly</li>
+                <li>PhonePe customer support can be reached at 0124-6789345 or help@phonepe.com</li>
+            </ul>
+            <p>Payment Issues:</p>
+            <ul>
+                <li>In case of failed transactions, funds will be returned within 5-7 business days</li>
+                <li>Transaction confirmation may take up to 24 hours</li>
+                <li>Keep your transaction ID for reference when reporting issues</li>
+                <li>Double charges will be automatically refunded within 24-48 hours</li>
+            </ul>
+        </div>
+
+        <div class="important-notice">
+            <h3><i class="fas fa-exclamation-triangle"></i> Important Notice</h3>
+            <p>We reserve the right to modify these terms at any time. Your continued use of our services following any changes constitutes your acceptance of the new terms.</p>
+        </div>
+
+        <div class="contact-section">
+            <h3>Questions About Our Terms?</h3>
+            <p>Contact our legal team at:</p>
+            <p>Email: <a href="mailto:legal@HASUTARA.com">legal@HASUTARA.com</a></p>
+            <p>Phone: +1 (555) 123-4567</p>
+        </div>
+
+        <div class="last-updated">
+            <p>These terms of service were last updated on March 10, 2025</p>
+        </div>
+    </div>
+</body>
+</html>
