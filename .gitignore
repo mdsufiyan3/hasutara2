@@ -1,39 +1,18 @@
-# Dependencies
-node_modules/
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Configuration files with sensitive data
-smtp-config.js
-js/smtp-config.js
-**/smtp-config.js
-*.smtp-config.js
-*smtp*.config.js
-config.js
-email-config.js
-**/config.js
-**/email-config.js
-
-# IDE and editor files
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Operating System
+# System files
 .DS_Store
 Thumbs.db
 
-# Build output
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Build files
 dist/
 build/
-out/
 
-# Log files
-*.log
+# IDE files
+.vscode/
+.idea/
